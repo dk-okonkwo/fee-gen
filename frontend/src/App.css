@@ -1,0 +1,358 @@
+@import url("https://fonts.googleapis.com/css2?family=Ojuju:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Ojuju", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 75px;
+}
+
+body {
+  /* background: linear-gradient(180deg, #0c1b27, #aaafb8); */
+  background: url(./assets/img/wpm-bg4.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(5px);
+  padding: 0;
+}
+
+/* HEADER CSS */
+
+.header {
+  width: 100%;
+  height: 15vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  font-size: 40px !important;
+}
+
+.logo-title {
+  display: flex;
+  justify-self: flex-start;
+  align-items: center;
+  margin-left: 50px;
+}
+
+.logo {
+  width: 150px;
+  height: 150px;
+  /* background: linear-gradient(180deg, #0c1b27, #aaafb8); */
+  border-radius: 50%;
+  margin-right: 0px;
+  margin-top: 10px;
+}
+
+.title h2,
+.title h3 {
+  /* background: rgb(146, 146, 60); */
+  margin: 0;
+  text-align: start;
+}
+
+/* BODY CSS */
+
+.main {
+  margin: 10px;
+  height: 100%;
+  width: 100% !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.main-body {
+  width: 90% !important;
+  height: 85vh;
+}
+
+.main-body h2 {
+  color: #ffffff;
+  font-size: 30px
+}
+
+.big-row {
+  width: 100%;
+  height: 100%;
+}
+
+.fees {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+.instructions {
+  width: 90%;
+  height: 27%;
+  background: linear-gradient(180deg, #729a28, #192602);
+  border-radius: 40px;
+  border: 1px solid #9ae908;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  color: #ffffff;
+  transition: 0.3s ease-in-out;
+}
+
+.instructions:hover {
+  transform: scale(1.02);
+}
+
+.instructions ul {
+  width: 100%;
+  height: 60%;
+  font-size: 22px;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  justify-content: space-evenly;
+}
+
+.fees h3 {
+  height: 12%;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 45px;
+  color: #e2fdaf;
+}
+
+.run-fees {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.child {
+  height: 100%;
+  width: 31% !important;
+  background: linear-gradient(180deg, #729a28, #192602);
+  border-radius: 20px;
+  border: 1px solid #9ae908;
+  transition: 0.3s ease-in-out;
+}
+
+.child:hover {
+  transform: scale(1.02);
+}
+
+.label {
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.in-form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.buttons {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 20%;
+}
+
+.documents {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.my-documents,
+.update-schedules {
+  background: linear-gradient(180deg, #729a28, #192602);
+  border-radius: 20px;
+  border: 1px solid #9ae908;
+  transition: 0.3s ease-in-out;
+}
+
+.my-documents {
+  height: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.my-documents:hover,
+.update-schedules:hover {
+  transform: scale(1.01);
+}
+
+.dividing-line {
+  height: 4px;
+  background: #e2ffac;
+  border-radius: 20px;
+  width: 97%;
+  align-self: center;
+}
+
+.update-schedules {
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 10px;
+  align-items: center;
+  color: #e2fdaf;
+}
+
+.schedules-sheets {
+  display: flex;
+  width: 70%;
+  height: 65%;
+  font-size: 22px;
+  justify-content: space-between;
+  color: #ffffff;
+}
+
+.schedules-sheets ul {
+  list-style: none;
+}
+
+.update-schedules Form {
+  width: 75%;
+  height: 31%;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.update-schedules Button,
+.update-schedules .label {
+  align-self: center;
+  font-size: 17px;
+}
+
+
+/* TITLES WITH ICONS */
+.with-icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 85%;
+  justify-content: space-around;
+  color: #ffffff;
+}
+
+.with-icons .icons {
+  font-size: 25px;
+}
+
+/* INSTRUCTIONS */
+
+.instructions-current {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid black;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 5px;
+}
+
+.instructions-current h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid black;
+  height: 20%;
+  font-size: 20px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.instructions-current ul {
+  list-style-type: none;
+  list-style: none;
+  text-decoration: none;
+  /* background: rgba(0, 195, 255, 0.433); */
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0;
+  margin-top: 2%;
+  border-radius: 10px;
+}
+
+.run-and-update {
+  width: 100% !important;
+  border-radius: 10px;
+  border: 1px solid black;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 15px;
+  padding-bottom: 40px;
+}
+
+/* .fees h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  border-bottom: 1px solid black;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  height: 8%;
+} */
+
+Button {
+  background: #83c20d !important;
+  border: 0 !important;
+  transition: 0.3s ease-in-out !important;
+}
+
+Button:hover {
+  transform: scale(1.06);
+}
+
+.in-form a {
+  text-decoration: none;
+}
+
+.in-form a Button {
+  display: flex;
+  flex-direction: row;
+  background: #6b833e !important;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+
+/* main color: #9E0402 */
