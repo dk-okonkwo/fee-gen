@@ -108,13 +108,13 @@ def downloads():
 
 
 if __name__ == "__main__":
-    # with app.app_context():
-    #     db.create_all()
-    #     # Check if main_fees already exists
-    #     existing_main_fees = WPMFee.query.first()
-    #     if existing_main_fees is None:
-    #         # If main_fees does not exist, add it
-    #         main_fees = WPMFee()
-    #         db.session.add(main_fees)
-    #         db.session.commit()
+    with app.app_context():
+        db.create_all()
+        # Check if main_fees already exists
+        existing_main_fees = WPMFee.query.first()
+        if existing_main_fees is None:
+            # If main_fees does not exist, add it
+            main_fees = WPMFee()
+            db.session.add(main_fees)
+            db.session.commit()
     app.run()
