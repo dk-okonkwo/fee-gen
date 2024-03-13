@@ -26,6 +26,6 @@ class WPMFee(db.Model):
             data["retentionFee"] = self.retention_fee
         if self.trans_fee is not None:
             data["transFee"] = self.trans_fee
-        
+
         return data
 

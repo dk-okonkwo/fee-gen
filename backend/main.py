@@ -9,6 +9,23 @@ from getRents import get_tenants_rents
 
 app.config['UPLOAD_FOLDER'] = 'sheets'
 
+def toJson(object):
+    data = {
+            "id": object.id,
+            "tenantsRents": object.tenants_rents,
+            "LARS": object.Leasing_and_retention,
+            "transSchedule": object.trans_schedule,
+        }
+    if object.leasing_fee is not None:
+        data["leasingFee"] = object.leasing_fee
+    if object.retention_fee is not None:
+        data["retentionFee"] = object.retention_fee
+    if object.trans_fee is not None:
+        data["transFee"] = object.trans_fee
+
+    return data
+
+
 
 def save_file(excel_sheet):
     file_path = os.path.join(app.root_path, 'static',
@@ -22,7 +39,7 @@ def save_file(excel_sheet):
 @app.route("/home", methods=["GET"])
 def get_main_fees():
     default_fees = WPMFee.query.first()
-    json_default_fees = default_fees.to_json()
+    json_default_fees = toJson(default_fees)
     return jsonify({"defaultFees": json_default_fees})
 
 
