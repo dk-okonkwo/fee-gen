@@ -27,7 +27,7 @@ function App() {
   }, []);
 
   const fetchDefaultFees = async () => {
-    const response = await fetch("http://127.0.0.1:5000/");
+    const response = await fetch("https://fee-gen-4.onrender.com/");
     const data = await response.json();
     setDefaultFees(data.defaultFees);
   };
