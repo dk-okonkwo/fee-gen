@@ -53,7 +53,7 @@ def get_transfee(group: str, trans_schedule: str, ledger: str):
     }
 
     group_B = ['595 Silverbirch Road', '1100 Main Street West', '1117 Main Street West',
-               '1098 Main Street West', '37 Highland Dr', '7 Foundry Street', '392 Albert St, Suite 304']
+               '1098 Main Street West', '37 Highland Dr', '7 Foundry Street', '392 Albert St, Suite 304', '37 Highland Drive']
 
     start, end = get_month_range(group)
 
@@ -66,26 +66,23 @@ def get_transfee(group: str, trans_schedule: str, ledger: str):
         invoice_date = ws.cell(row=row, column=4).value
 
         # remove group B or A properties
-        if isinstance(prop, str):
-            if group == "A":
-                if prop in group_B:
-                    ws.delete_rows(row)
-            elif group == "B":
-                if prop not in group_B and row != 5:
-                    ws.delete_rows(row)
+        if isinstance(prop, str) and group == "A" and prop in group_B:
+            ws.delete_rows(row)
+
+        elif isinstance(prop, str) and group == "B" and prop not in group_B:
+            ws.delete_rows(row)
 
         # remove wolverine transactions
-        if isinstance(payee, str):
+        elif isinstance(payee, str):
             if payee == wolverine:
                 ws.delete_rows(row)
 
         # delete transactions outside date range
-        if isinstance(invoice_date, str):
+        elif isinstance(invoice_date, datetime):
             try:
                 # Convert string to datetime
-                date_value = datetime.strptime(invoice_date, '%m/%d/%Y')
-                # print(date_value)
-                if start <= date_value <= end:
+                # date_value = datetime.strptime(invoice_date, '%m/%d/%Y')
+                if start <= invoice_date <= end and prop in group_B:
                     continue  # Date is within range, keep the row
                 else:
                     # Date is not within range, delete the row
@@ -93,8 +90,9 @@ def get_transfee(group: str, trans_schedule: str, ledger: str):
             except ValueError:
                 print("not valid date")
                 continue  # Skip if the date format is invalid
+
         else:
-            print("not a string")
+            print("invoice date is not datetime")
 
     for row in reversed(range(sheet_data, ws.max_row + 1)):
         ws.cell(row=row, column=1).value = None

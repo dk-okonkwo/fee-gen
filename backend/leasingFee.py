@@ -64,21 +64,18 @@ def get_leasing_fee(group: str, tenants_rents_file: str, LARS_file: str, tenant_
         tenant = ws.cell(row=row, column=relationship).value
 
         # remove group B or A properties
-        if isinstance(prop, str):
-            if group == "A":
-                if prop in group_B:
-                    ws.delete_rows(row)
-            elif group == "B":
-                if prop not in group_B:
-                    ws.delete_rows(row)
+        if isinstance(prop, str) and group == "A" and prop in group_B:
+            ws.delete_rows(row)
 
+        elif isinstance(prop, str) and group == "B" and prop not in group_B:
+            ws.delete_rows(row)
 
         # remove non "main tenants"
-        if tenant != "Main Tenant":
+        elif tenant != "Main Tenant":
             ws.delete_rows(row)
 
         # remove properties not within date range
-        if isinstance(cell_value, str):
+        elif isinstance(cell_value, str):
             try:
                 # Convert string to datetime
                 date_value = datetime.strptime(cell_value, '%m/%d/%Y')
@@ -92,7 +89,7 @@ def get_leasing_fee(group: str, tenants_rents_file: str, LARS_file: str, tenant_
                 print("not valid date")
                 continue  # Skip if the date format is invalid
         else:
-            print("not a string")
+            print("safe")
 
     # Remove "Phone" and "Email" columns
     phone_col = 10
@@ -133,7 +130,7 @@ def get_leasing_fee(group: str, tenants_rents_file: str, LARS_file: str, tenant_
     for row in range(sheet_data, ws.max_row + 1):
         prop = ws.cell(row=row, column=1).value
         rent_str = ws.cell(row=row, column=phone_col).value
-        rent = int(rent_str) if rent_str else 0
+        rent = float(rent_str) if rent_str else 0
         for r in range(2, lars.max_row + 1):
             if lars.cell(row=r, column=1).value == prop:
                 percent = int(lars.cell(row=r, column=2).value)
