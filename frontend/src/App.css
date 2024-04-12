@@ -365,11 +365,15 @@ Button:hover {
 
 /* TABLET SCREENS RESPONSIVE */
 @media (min-width: 767px) and (max-width: 1025px) {
+  .header {
+    height: 12vh;
+  }
+
   .main-body {
     overflow: scroll;
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 85vh;
+    height: auto;
     width: 100%;
     display: flex;
     align-items: center;
