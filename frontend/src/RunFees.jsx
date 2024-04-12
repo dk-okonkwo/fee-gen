@@ -135,14 +135,16 @@ const RunFees = ({ defaultFees }) => {
                     className="icons"
                   />
                 </div>
-                <Form.Select onChange={handleGroup}>
-                  <option>Select Group</option>
-                  <option value="A">Group A</option>
-                  <option value="B">Group B</option>
-                </Form.Select>
-                <Form.Group controlId="formFile" className="mb-3">
-                  <Form.Control type="file" onChange={handleFileChange} />
-                </Form.Group>
+                <div className="select">
+                  <Form.Select onChange={handleGroup}>
+                    <option>Select Group</option>
+                    <option value="A">Group A</option>
+                    <option value="B">Group B</option>
+                  </Form.Select>
+                  <Form.Group controlId="formFile" className="mb-3">
+                    <Form.Control type="file" onChange={handleFileChange} />
+                  </Form.Group>
+                </div>
                 <div className="buttons">
                   <Button type="submit">Run</Button>
                   {download && typeOfFee === "leasing" && (
@@ -176,14 +178,16 @@ const RunFees = ({ defaultFees }) => {
                     className="icons"
                   />
                 </div>
-                <Form.Select onChange={handleGroup}>
-                  <option>Select Group</option>
-                  <option value="A">Group A</option>
-                  <option value="B">Group B</option>
-                </Form.Select>
-                <Form.Group controlId="formFile" className="mb-3">
-                  <Form.Control type="file" onChange={handleFileChange} />
-                </Form.Group>
+                <div className="select">
+                  <Form.Select onChange={handleGroup}>
+                    <option>Select Group</option>
+                    <option value="A">Group A</option>
+                    <option value="B">Group B</option>
+                  </Form.Select>
+                  <Form.Group controlId="formFile" className="mb-3">
+                    <Form.Control type="file" onChange={handleFileChange} />
+                  </Form.Group>
+                </div>
                 <div className="buttons">
                   <Button type="submit">Run</Button>
                   {download && typeOfFee === "retention" && (
@@ -217,14 +221,16 @@ const RunFees = ({ defaultFees }) => {
                     className="icons"
                   />
                 </div>
-                <Form.Select onChange={handleGroup}>
-                  <option>Select Group</option>
-                  <option value="A">Group A</option>
-                  <option value="B">Group B</option>
-                </Form.Select>
-                <Form.Group controlId="formFile" className="mb-3">
-                  <Form.Control type="file" onChange={handleFileChange} />
-                </Form.Group>
+                <div className="select">
+                  <Form.Select onChange={handleGroup}>
+                    <option>Select Group</option>
+                    <option value="A">Group A</option>
+                    <option value="B">Group B</option>
+                  </Form.Select>
+                  <Form.Group controlId="formFile" className="mb-3">
+                    <Form.Control type="file" onChange={handleFileChange} />
+                  </Form.Group>
+                </div>
                 <div className="buttons">
                   <Button type="submit">Run</Button>
                   {download && typeOfFee === "transaction" && (

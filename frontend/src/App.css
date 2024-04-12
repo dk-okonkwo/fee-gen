@@ -77,7 +77,7 @@ body {
 
 .main-body h2 {
   color: #ffffff;
-  font-size: 30px
+  font-size: 30px;
 }
 
 .big-row {
@@ -170,6 +170,14 @@ body {
   padding: 10px;
 }
 
+.select {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
 .buttons {
   width: 90%;
   display: flex;
@@ -209,7 +217,7 @@ body {
 }
 
 .dividing-line {
-  height: 4px;
+  height: 3px;
   background: #e2ffac;
   border-radius: 20px;
   width: 97%;
@@ -217,7 +225,7 @@ body {
 }
 
 .update-schedules {
-  height: 70%;
+  height: 72%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -252,8 +260,8 @@ body {
 .update-schedules .label {
   align-self: center;
   font-size: 17px;
+  height: 30%;
 }
-
 
 /* TITLES WITH ICONS */
 .with-icons {
@@ -351,8 +359,240 @@ Button:hover {
   background: #6b833e !important;
   align-items: center;
   justify-content: space-between;
-
 }
 
-
 /* main color: #9E0402 */
+
+/* TABLET SCREENS RESPONSIVE */
+@media (min-width: 767px) and (max-width: 1025px) {
+  .main-body {
+    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 85vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .big-row {
+    flex-direction: column !important;
+    align-items: center;
+    width: 100% !important;
+    height: auto;
+    padding-top: 5vh;
+  }
+
+  .fees {
+    flex-direction: row;
+    width: 100% !important;
+    justify-content: space-between;
+    height: 35vh;
+    margin-bottom: 4vh;
+  }
+
+  .fees h3 {
+    display: none;
+  }
+
+  .instructions {
+    height: 100%;
+    width: 50%;
+  }
+
+  .run-fees {
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+  }
+
+  .child {
+    width: 100% !important;
+    height: 33%;
+  }
+
+  .child Form {
+    width: 100%;
+    display: row;
+    padding: 0;
+  }
+
+  .select {
+    flex-direction: row;
+    width: 100%;
+    height: 40%;
+    justify-content: space-between;
+  }
+
+  .in-form .form-select,
+  .in-form .mb-3 {
+    width: 47%;
+    height: 100%;
+    font-size: 19px;
+  }
+
+  .in-form .form-control {
+    background: #ffffff;
+    height: 100%;
+    font-size: 20px;
+  }
+
+  .buttons {
+    height: 25% !important;
+  }
+
+  .buttons Button {
+    height: 100%;
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .with-icons .form-label {
+    font-size: 22px;
+    margin: 0;
+  }
+
+  .documents {
+    width: 100%;
+  }
+
+  .my-documents,
+  .dividing-line {
+    margin-bottom: 1vh;
+  }
+}
+
+/* PHONE SCREENS RESPONSIVE */
+@media (min-width: 350px) and (max-width: 766px) {
+  .header {
+    height: 12vh;
+  }
+
+  .main-body {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 !important;
+  }
+
+  .big-row {
+    flex-direction: column !important;
+    align-items: center;
+    width: 100% !important;
+  }
+
+  .fees {
+    width: 100% !important;
+    height: 90vh;
+    margin-bottom: 2vh;
+  }
+
+  .instructions {
+    width: 99%;
+    height: auto;
+  }
+
+  .instructions ul {
+    font-size: 16px;
+    list-style: circle;
+  }
+
+  .fees h3 {
+    color: #69a004;
+  }
+
+  .run-fees {
+    flex-direction: column !important;
+    width: 100%;
+    height: 70%;
+  }
+
+  .child {
+    width: 100% !important;
+    height: 32%;
+  }
+
+  .child Form {
+    width: 100%;
+    padding: 1px;
+    justify-content: space-between;
+  }
+
+  .with-icons .form-label {
+    font-weight: 600;
+  }
+
+  .child .with-icons {
+    height: 23%;
+  }
+
+  .child .form-label {
+    margin: 0;
+  }
+
+  .select {
+    height: 49% !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .select .form-select,
+  .select .mb-3 {
+    height: 49% !important;
+    margin: 0 !important;
+    padding: 2px;
+    width: 100% !important;
+  }
+
+  .select .form-control {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .buttons {
+    height: 25% !important;
+  }
+
+  .buttons Button {
+    height: 100%;
+    width: 25%;
+  }
+
+  .documents {
+    width: 100%;
+  }
+
+  .my-documents {
+    margin-bottom: 2vh;
+  }
+
+  .my-documents ul {
+    font-size: 16px;
+    list-style: circle;
+  }
+
+  .dividing-line {
+    margin-bottom: 2vh;
+  }
+
+  .update-schedules .with-icons {
+    width: 100%;
+  }
+
+  .update-schedules Form {
+    width: 100%;
+  }
+}
