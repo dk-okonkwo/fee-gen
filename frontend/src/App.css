@@ -364,7 +364,7 @@ Button:hover {
 /* main color: #9E0402 */
 
 /* TABLET SCREENS RESPONSIVE */
-@media (min-width: 767px) and (max-width: 1025px) {
+@media (min-width: 767px) and (max-width: 1023px) {
   .header {
     height: 12vh;
   }
