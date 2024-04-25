@@ -107,7 +107,7 @@ const RunFees = ({ defaultFees }) => {
 
   const handleDownload = (num) => {
     axios({
-      url: `http://127.0.0.1:5000/downloads/${num}`, // Replace with your backend URL
+      url: `https://fee-gen-4.onrender.com/downloads/${num}`, // Replace with your backend URL
       method: "GET",
       responseType: "blob", // Important: Set the response type to 'blob'
     }).then((response) => {
