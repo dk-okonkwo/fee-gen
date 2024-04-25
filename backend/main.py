@@ -8,14 +8,16 @@ from transactionFee import get_transfee
 from getRents import get_tenants_rents
 
 app.config['UPLOAD_FOLDER'] = 'sheets'
+download_fee = 0
+
 
 def toJson(object):
     data = {
-            "id": object.id,
-            "tenantsRents": object.tenants_rents,
-            "LARS": object.Leasing_and_retention,
-            "transSchedule": object.trans_schedule,
-        }
+        "id": object.id,
+        "tenantsRents": object.tenants_rents,
+        "LARS": object.Leasing_and_retention,
+        "transSchedule": object.trans_schedule,
+    }
     if object.leasing_fee is not None:
         data["leasingFee"] = object.leasing_fee
     if object.retention_fee is not None:
@@ -24,7 +26,6 @@ def toJson(object):
         data["transFee"] = object.trans_fee
 
     return data
-
 
 
 def save_file(excel_sheet):
@@ -99,29 +100,40 @@ def run_fee(type, group):
                 group, tenants_rents, lars, file)
             default_fees.leasing_fee = new_leasing_file
             db.session.commit()
-            file_path = f'sheets/{new_leasing_file}'
-            return send_file(file_path, as_attachment=True, mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-        if type == "retention":
+            download_fee = 1
+            return jsonify({"message": f"click the blue button to download {download_fee}"}), 200
+        elif type == "retention":
             new_retention_file = get_renewal_fee(group, lars, file)
             default_fees.retention_fee = new_retention_file
             db.session.commit()
-            file_path = f'sheets/{new_retention_file}'
-            return send_file(file_path, as_attachment=True, mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-        if type == "transaction":
+            download_fee = 2
+            return jsonify({"message": f"click the blue button to download {download_fee}"}), 200
+        else:
             new_transaction_file = get_transfee(group, trans_schedule, file)
             default_fees.trans_fee = new_transaction_file
             db.session.commit()
-            file_path = f'sheets/{new_transaction_file}'
-            return send_file(file_path, as_attachment=True, mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+            download_fee = 3
+            return jsonify({"message": f"click the blue button to download {download_fee}"}), 200
     except Exception as e:
         db.session.rollback()
-        return jsonify({"message": f"Not sure how we got here: {str(e)}"}), 500
+        return jsonify({"message": f"Error: {str(e)}"}), 500
 
 
-@app.route("/downloads", methods=['GET'])
-def downloads():
-    file_path = 'sheets/tenantRents.xlsx'
-    return send_file(file_path, as_attachment=True, mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+@app.route("/downloads/<int:num>", methods=['GET'])
+def downloads(num):
+    default_fees = WPMFee.query.first()
+    lease = default_fees.leasing_fee
+    trans = default_fees.trans_fee
+    ret = default_fees.retention_fee
+    if num == 1:
+        file_path = f'sheets/{lease}'
+    elif num == 2:
+        file_path = f'sheets/{ret}'
+    elif num == 3:
+        file_path = f'sheets/{trans}'
+    else:
+        return jsonify({"message": "No file to download"}), 401
+    return send_file(file_path, as_attachment=True, mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'), 200
 
 
 if __name__ == "__main__":

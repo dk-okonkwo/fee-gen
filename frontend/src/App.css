@@ -363,6 +363,12 @@ Button:hover {
 
 /* main color: #9E0402 */
 
+/* DOWNLOAD BUTTON */
+.download {
+  width: auto;
+  background: rgb(57, 142, 170) !important;
+}
+
 /* TABLET SCREENS RESPONSIVE */
 @media (min-width: 767px) and (max-width: 1023px) {
   .header {

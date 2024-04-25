@@ -13,11 +13,17 @@ import { useState } from "react";
 import axios from "axios";
 
 const RunFees = ({ defaultFees }) => {
-  const [download, setDownload] = useState(null);
+  const [download, setDownload] = useState(false);
   const [file, setFile] = useState(null);
   const [typeOfFee, setTypeOfFee] = useState("");
   const [typeOfSheet, setTypeOfSheet] = useState("");
   const [group, setGroup] = useState("");
+  const download_files = [
+    "error.xlsx",
+    "leasing.xlsx",
+    "retention.xlsx",
+    "transaction.xlsx",
+  ];
 
   const handleGroup = (e) => {
     setGroup(e.target.value);
@@ -55,9 +61,9 @@ const RunFees = ({ defaultFees }) => {
         alert("Error occurred while processing the file");
       } else {
         // Successful response
-        const blob = new Blob([response.data]);
-        const url = window.URL.createObjectURL(blob);
-        setDownload(url);
+        const data = await response.data;
+        alert(data.message);
+        setDownload(true);
       }
     } catch (error) {
       console.error("An error occurred while processing the file:", error);
@@ -99,6 +105,28 @@ const RunFees = ({ defaultFees }) => {
     }
   };
 
+  const handleDownload = (num) => {
+    axios({
+      url: `http://127.0.0.1:5000/downloads/${num}`, // Replace with your backend URL
+      method: "GET",
+      responseType: "blob", // Important: Set the response type to 'blob'
+    }).then((response) => {
+      // Create a file link in the browser's memory
+      const href = URL.createObjectURL(response.data);
+
+      // Create an <a> HTML element with the href linked to the file
+      const link = document.createElement("a");
+      link.href = href;
+      link.setAttribute("download", download_files[num]); // Set the desired filename or extension
+      document.body.appendChild(link);
+      link.click();
+
+      // Clean up the dynamically created <a> element and remove the ObjectURL
+      document.body.removeChild(link);
+      URL.revokeObjectURL(href);
+    });
+  };
+
   return (
     <Container fluid className="main-body">
       <Row className="big-row">
@@ -114,7 +142,10 @@ const RunFees = ({ defaultFees }) => {
             </div>
             <ul>
               <li>Update tenants and rents sheets every month.</li>
-              <li>Ensure that all sheets are unmerged before uploading.</li>
+              <li>
+                Ensure that all the cells in each sheets are unmerged before
+                uploading.
+              </li>
             </ul>
           </div>
           <h3>RUN FEES</h3>
@@ -148,16 +179,19 @@ const RunFees = ({ defaultFees }) => {
                 <div className="buttons">
                   <Button type="submit">Run</Button>
                   {download && typeOfFee === "leasing" && (
-                    <a href={download}>
-                      <Button>
-                        Download
-                        <FontAwesomeIcon
-                          icon={faDownload}
-                          color="#ffffff"
-                          className="icons"
-                        />
-                      </Button>
-                    </a>
+                    <Button
+                      onClick={() => {
+                        handleDownload(1);
+                      }}
+                      className="download"
+                    >
+                      Download
+                      <FontAwesomeIcon
+                        icon={faDownload}
+                        color="#ffffff"
+                        className="icons"
+                      />
+                    </Button>
                   )}
                 </div>
               </Form>
@@ -191,16 +225,19 @@ const RunFees = ({ defaultFees }) => {
                 <div className="buttons">
                   <Button type="submit">Run</Button>
                   {download && typeOfFee === "retention" && (
-                    <a href={download}>
-                      <Button>
-                        Download
-                        <FontAwesomeIcon
-                          icon={faDownload}
-                          color="#ffffff"
-                          className="icons"
-                        />
-                      </Button>
-                    </a>
+                    <Button
+                      onClick={() => {
+                        handleDownload(2);
+                      }}
+                      className="download"
+                    >
+                      Download
+                      <FontAwesomeIcon
+                        icon={faDownload}
+                        color="#ffffff"
+                        className="icons"
+                      />
+                    </Button>
                   )}
                 </div>
               </Form>
@@ -234,16 +271,19 @@ const RunFees = ({ defaultFees }) => {
                 <div className="buttons">
                   <Button type="submit">Run</Button>
                   {download && typeOfFee === "transaction" && (
-                    <a href={download}>
-                      <Button>
-                        Download
-                        <FontAwesomeIcon
-                          icon={faDownload}
-                          color="#ffffff"
-                          className="icons"
-                        />
-                      </Button>
-                    </a>
+                    <Button
+                      onClick={() => {
+                        handleDownload(3);
+                      }}
+                      className="download"
+                    >
+                      Download
+                      <FontAwesomeIcon
+                        icon={faDownload}
+                        color="#ffffff"
+                        className="icons"
+                      />
+                    </Button>
                   )}
                 </div>
               </Form>
